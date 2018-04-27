@@ -48,6 +48,15 @@ cargarNombreEnPantalla();
 actualizarSaldoEnPantalla();
 actualizarLimiteEnPantalla();
 
+//funciones de suma y resta
+function sumar(monto) {
+    saldoCuenta += monto;
+}
+
+function restar(monto) {
+    saldoCuenta -= monto;
+}
+
 //funcion de validación, tanto de monto como de formato.
 
 function haySaldo() {
@@ -63,14 +72,6 @@ function haySaldo() {
    }
 }
 
-//funciones de suma y resta
-function sumar(monto) {
-    saldoCuenta += monto;
-}
-
-function restar(monto) {
-    saldoCuenta -= monto;
-}
 
 
 // Función de extracción de dinero
