@@ -73,7 +73,6 @@ function haySaldo() {
 }
 
 
-
 // Función de extracción de dinero
 
 function extraerDinero() {
