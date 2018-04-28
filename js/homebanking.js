@@ -59,25 +59,33 @@ function restar(monto) {
 
 //funcion de validación, tanto de monto como de formato.
 
+/*funciona, pero si se ingresa un caracter valido en extracción y deposito, informa el error 
+pero inmediatamente se ejecutan las validaciones de billete de 100 y realiza un 
+deposito/extracción de todas formas. */
+
+// YA FUNCIONAAAAAAAA YAIII
+
 function haySaldo() {
-    if (!isNaN(monto) && monto != null) {
-        if (monto > limiteExtraccion) {
+    if (isNaN(monto)) {
+        alert("ingrese un monto númerico");
+    } else if (monto > limiteExtraccion) {
             alert("Limite de extracción superado");
-        } else if (monto > saldoCuenta) {
-            alert("Saldo insuficiente");
         } else if (monto % 100 != 0) {
             alert("Solo se pueden extraer billetes de 100");
-    } else if (isNaN(monto)) {
-  		monto = parseInt(prompt("Ingrese monto"));
-   }
-}
+        } else  {
+            if (!isNaN(monto) && monto != null) {
+                return true;
+            }
+        }
+} 
 
 
 // Función de extracción de dinero
 
 function extraerDinero() {
+    monto = parseInt(prompt("Ingrese monto"));
 	if (haySaldo()) {
-        restar();
+        restar(monto);
         alert("Has Extraído " + monto + "\nsaldo anterior " +
             montoAnterior + "\nsaldo actual " + saldoCuenta);
 
@@ -88,6 +96,7 @@ function extraerDinero() {
 // Función de depósito de dinero
 
 function depositarDinero() {
+    monto = parseInt(prompt("Ingrese monto"));
     if (haySaldo()) {
         sumar(monto);
         //saldoCuenta += monto; 
@@ -145,6 +154,10 @@ function pagarServicio() {
 
 // Función de transferencia de dinero
 
+/* No logré hacer que reconociese las variables cuentaAmiga1 y cuentaAmiga2. 
+A efectos de entregar les puse 1 y 2 para que andase, quería ponerle un arreglo pero ya me atrasé
+con el proyecto 3. Lo arreglaré luego*/
+
 function transferirDinero() {
     var transferir = parseInt(prompt("Ingrese monto a transferir"));
     if (isNaN(transferir)) {
@@ -161,13 +174,16 @@ function transferirDinero() {
             actualizarSaldoEnPantalla();
             alert("Has Transferido " + transferir + " a la cuenta " + cuentaAmiga1 + "\nSu saldo anterior: " + montoAnterior + "\nsaldo actual: " + saldoCuenta);
 
+
         } else if (cuenta === 2) {
             restar(transferir);
             actualizarSaldoEnPantalla();
             alert("Has Transferido " + transferir + " a la cuenta " + cuentaAmiga2 + "\nSu saldo anterior: " + montoAnterior + "\nsaldo actual: " + saldoCuenta);
+        } else if (isNaN(cuenta) && cuenta > 2) {
+            alert("Ingrese una opción correcta, para transferir a otra cuenta, añadala en la sección 'gestionar cuentas")
         }
     } else {
-        alert("saldo insuficiente")
+        alert("saldo insuficiente2")
     }
 
     actualizarSaldoEnPantalla();
